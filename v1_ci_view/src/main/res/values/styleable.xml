@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--CIToolbar-->
+    <attr name="v1_ci_view" format="reference"/>
+    <declare-styleable name="CIToolbar">
+        <!--背景色-->
+        <attr name="android:background"/>
+        <!--標題-->
+        <attr name="title_text" format="string"/>
+        <!--是否顯示底線-->
+        <attr name="showLine" format="boolean"/>
+    </declare-styleable>
+
+</resources>
