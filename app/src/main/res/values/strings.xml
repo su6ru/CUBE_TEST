@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">連線失敗</string>
+    <string name="msg_data_anomaly">資料異常</string>
 </resources>

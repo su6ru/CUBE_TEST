@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimens_very_very_big">28sp</dimen>
+    <dimen name="dimens_very_big">26sp</dimen>
+    <dimen name="dimens_big">24sp</dimen>
+    <dimen name="dimens_normal">22sp</dimen>
+    <dimen name="dimens_small">20sp</dimen>
+    <dimen name="dimens_very_small">18sp</dimen>
+    <dimen name="dimens_very_very_small">16sp</dimen>
+    <dimen name="dimens_very_very_very_small">14sp</dimen>
+</resources>

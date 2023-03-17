@@ -2,8 +2,10 @@ package com.cube.cube_test.custom.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.ci.v1_ci_view.ui.activity.CIActivity
+import com.cube.cube_test.custom.fragment.CubeTestFragment
 import com.cube.cube_test.data.define.CubeTestConfig
 import com.google.gson.Gson
 /** 主繼承類Activity */
@@ -29,10 +31,16 @@ open class CubeTestActivity<TRequest> : CIActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+
+    override fun getMainView(): View {
+        TODO("Not yet implemented")
+    }
     // MARK:- ========================== View
 
     // MARK:- ========================== Data
-
+    open fun getFragmentId(cls: Class<out CubeTestFragment?>): String? {
+        return "Main_" + cls.simpleName
+    }
     // MARK:- ========================== Event
 
     // MARK:- ========================== Method
@@ -43,10 +51,7 @@ open class CubeTestActivity<TRequest> : CIActivity() {
     fun readIntentRequest(cls: Class<TRequest>?): TRequest{
         return Gson().fromJson(intent.getStringExtra(CubeTestConfig.Extra.KEY_JSON),cls)
     }
-    /** 顯示Toast */
-    fun showToast(text: String){
-        Toast.makeText(this,text,Toast.LENGTH_SHORT).show()
-    }
+
 
 }
 

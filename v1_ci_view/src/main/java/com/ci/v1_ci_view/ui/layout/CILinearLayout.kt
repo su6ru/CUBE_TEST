@@ -1,4 +1,4 @@
-package com.ci.v1_ci_view.ui.linearlayout
+package com.ci.v1_ci_view.ui.layout
 
 import android.content.Context
 import android.util.AttributeSet

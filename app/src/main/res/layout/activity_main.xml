@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ci.v1_ci_view.ui.layout.CIFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.main.MainActivity">
+    android:orientation="vertical"
+    android:background="@color/white">
+    <com.ci.v1_ci_view.ui.layout.CILinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.ci.v1_ci_view.ui.toolbar.CIToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title_text="首頁"
+            android:background="@color/blue_light"/>
+        <com.ci.v1_ci_view.ui.layout.CIFrameLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        </com.ci.v1_ci_view.ui.layout.CIFrameLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--tab-->
+        <com.google.android.material.tabs.TabLayout
+            style="@style/TabLayout"
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--遊憩景點-->
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="遊憩景點" />
+            <!--最新消息-->
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="最新消息" />
+            <!--設定-->
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="設定" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.ci.v1_ci_view.ui.layout.CILinearLayout>
+
+
+</com.ci.v1_ci_view.ui.layout.CIFrameLayout>

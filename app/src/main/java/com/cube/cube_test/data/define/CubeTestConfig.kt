@@ -11,9 +11,9 @@ class CubeTestConfig {
     }
     class Api{
         companion object{
-            val URL = if (BuildConfig.DEBUG) "https://www.travel.taipei/open-api" else "https://www.travel.taipei/open-api"
+            val URL = if (BuildConfig.DEBUG) "https://www.travel.taipei/open-api/" else "https://www.travel.taipei/open-api/"
 
-
+            //API文件  https://www.travel.taipei/open-api/swagger/ui/index#/Media/Media_Audio
         }
     }
 

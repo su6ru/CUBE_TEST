@@ -1,19 +1,23 @@
 package com.ci.v1_ci_view.ui.activity
 
-import android.app.Activity
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.util.Log
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ci.v1_ci_view.ui.alert.CILoadingAlert
+import com.ci.v1_ci_view.ui.fragment.CIFragment
 
 /** CIActivity */
-open class CIActivity : AppCompatActivity() {
+abstract class CIActivity : AppCompatActivity() {
     // MARK:- ========================== Define
 
     // MARK:- ========================== Constructor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mLoadingAlert  = CILoadingAlert(this)
     }
 
     override fun onResume() {
@@ -21,15 +25,16 @@ open class CIActivity : AppCompatActivity() {
     }
     // MARK:- ========================== View
     /** 用於顯示Loading中的 Alert */
-    private var mLoadingAlert : CILoadingAlert? = CILoadingAlert(this)
-
-
+    private var mLoadingAlert : CILoadingAlert? = null
+    /** 取得activity最外圍的layout */
+    abstract fun getMainView():View
     // MARK:- ========================== Data
     /** Loading 狀態的count ，當大於0代表Loading中 */
     private var mLoadingAlertCount = 0
     public fun isLoading() : Boolean{
         return mLoadingAlertCount != 0
     }
+    /** 設定是否顯示Loading */
     public fun setLoading(enable: Boolean){
         if (enable){
             showLoadingAlert()
@@ -44,22 +49,45 @@ open class CIActivity : AppCompatActivity() {
     // MARK:- ========================== Method
     /** 顯示Loading標誌 */
     private fun showLoadingAlert(){
+
         mLoadingAlertCount += 1
 
-        if (mLoadingAlertCount == 0){
+        Log.d("loading", "show")
+
+        if (mLoadingAlertCount == 0) {
             return
         }
 
-        if (mLoadingAlert == null){
+        if (mLoadingAlert == null) {
             mLoadingAlert = CILoadingAlert(this)
         }
 
-        if (!mLoadingAlert.isShown)
+        if (!mLoadingAlert!!.mIsShow) {
+            val view = getMainView()
+            if (view is FrameLayout) {
+                mLoadingAlert!!.show(view)
+            }
+        }
     }
     /** 隱藏Loading標誌 */
     private fun hideLoadingAlert(){
+        mLoadingAlertCount -= 1
 
+        Log.d("loading", "hide")
+
+        if (mLoadingAlertCount != 0) {
+            return
+        }
+
+        if (mLoadingAlert == null) {
+            return
+        }
+
+        mLoadingAlert!!.hide()
     }
-
+    /** 顯示Toast */
+    fun showToast(text: String){
+        Toast.makeText(this,text, Toast.LENGTH_SHORT).show()
+    }
 
 }

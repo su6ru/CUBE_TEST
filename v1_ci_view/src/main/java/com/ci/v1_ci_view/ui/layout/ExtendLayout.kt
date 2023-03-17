@@ -1,14 +1,9 @@
-package com.ci.v1_ci_view.ui.extendlayout
+package com.ci.v1_ci_view.ui.layout
 
 import android.content.Context
-import android.hardware.display.DisplayManager
 import android.util.AttributeSet
-import android.util.DisplayMetrics
-import android.view.Display
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.getSystemService
-import androidx.core.view.marginBottom
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
 import androidx.core.view.marginTop

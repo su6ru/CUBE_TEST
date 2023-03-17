@@ -48,7 +48,10 @@ open class CIBaseAlert @JvmOverloads constructor(
 
 
     // MARK:- ========================== Data
-    private var mIsShow = false
+    public var mIsShow = false
+    fun isShow():Boolean{
+        return mIsShow
+    }
     // MARK:- ========================== Event
     /** 顯示alert */
     public fun show(parent : FrameLayout){
@@ -71,7 +74,7 @@ open class CIBaseAlert @JvmOverloads constructor(
 
     }
     /** 關閉alert */
-    public fun show(){
+    public fun hide(){
         if (parent !is ViewGroup){
             return
         }
