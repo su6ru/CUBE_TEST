@@ -1,0 +1,49 @@
+[
+  {
+    "id":"1",
+    "name": "正體中文",
+    "parameter": "zh-tw"
+  },
+  {
+    "id":"2",
+    "name": "簡體中文",
+    "parameter": "zh-cn"
+  },
+  {
+    "id":"3",
+    "name": "英文",
+    "parameter": "en"
+  },
+  {
+    "id":"4",
+    "name": "日文",
+    "parameter": "ja"
+  },
+  {
+    "id":"5",
+    "name": "韓文",
+    "parameter": "ko"
+  },
+  {
+    "id":"6",
+    "name": "西班牙文",
+    "parameter": "es"
+  },
+  {
+    "id":"7",
+    "name": "印尼文",
+    "parameter": "id"
+  },
+  {
+    "id":"8",
+    "name": "泰文",
+    "parameter": "th"
+  },
+  {
+    "id":"9",
+    "name": "越南文",
+    "parameter": "vi"
+  }
+]
+
+

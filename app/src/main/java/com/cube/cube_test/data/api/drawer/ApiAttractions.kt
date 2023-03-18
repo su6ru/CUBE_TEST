@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 class ApiAttractions {
     public class GetAttractions{
-        public class Response : BaseData.Response<List<AttractionsDetail>>() {
+        public class Response : BaseData.Response<MutableList<AttractionsDetail>>() {
 
         }
     }

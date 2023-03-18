@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white">
+    <!--Tab+內容-->
     <com.ci.v1_ci_view.ui.layout.CILinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,15 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title_text="首頁"
-            android:background="@color/blue_light"/>
-        <com.ci.v1_ci_view.ui.layout.CIFrameLayout
-            android:id="@+id/layout_content"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-
-        </com.ci.v1_ci_view.ui.layout.CIFrameLayout>
-
+            android:background="@color/blue_light"
+            android:visibility="gone"/>
         <!--tab-->
         <com.google.android.material.tabs.TabLayout
             style="@style/TabLayout"
@@ -46,6 +40,16 @@
                 android:layout_height="wrap_content"
                 android:text="設定" />
         </com.google.android.material.tabs.TabLayout>
+        <!--內容-->
+        <com.ci.v1_ci_view.ui.layout.CIFrameLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+        </com.ci.v1_ci_view.ui.layout.CIFrameLayout>
+
+
     </com.ci.v1_ci_view.ui.layout.CILinearLayout>
 
 

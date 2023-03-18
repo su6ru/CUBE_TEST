@@ -16,6 +16,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 import java.security.cert.X509Certificate
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -124,13 +125,13 @@ class ApiManager(context: Context) {
 
     inner class APIAttractionsDrawer{
         fun callGetAttractions(
+            page: String,
             successListener: IOnOptionLister<ApiAttractions.GetAttractions.Response>,
             failListener: IOnOptionLister<String>,
-            completeListener: IOnOptionLister<Void?>
-        ){
+            completeListener: IOnOptionLister<Void?>){
             mIApiService
-                .getAttractions()
-                ?.enqueue(APICallBack(
+                .getAttractions(page)
+                .enqueue(APICallBack(
                     successListener,failListener,completeListener))
         }
     }
@@ -142,7 +143,7 @@ class ApiManager(context: Context) {
     interface IApiService {
         //============================== 普通共用類
         /** 查詢app資訊(公告&版本號)  */
-        @GET("zh-tw/Attractions/All?page=1")
-        fun getAttractions(): Call<ApiAttractions.GetAttractions.Response>
+        @GET("zh-tw/Attractions/All?")
+        fun getAttractions(@Query("page") page:String): Call<ApiAttractions.GetAttractions.Response>
     }
 }

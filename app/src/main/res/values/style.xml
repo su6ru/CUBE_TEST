@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <style name="TabLayout">
         <item name="android:background">@color/black</item>
         <item name="tabIndicatorColor">@color/yellow_deep</item>

@@ -1,21 +1,16 @@
 package com.cube.cube_test.feature.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
 import com.cube.cube_test.R
 import com.cube.cube_test.custom.activity.CubeTestActivity
-import com.cube.cube_test.custom.application.CubeTestApplication
 import com.cube.cube_test.custom.fragment.CubeTestFragment
-import com.cube.cube_test.data.api.drawer.ApiAttractions
 import com.cube.cube_test.data.feature.FeatureData
-import com.cube.cube_test.feature.attractions.AttractionsFragment
-import com.cube.cube_test.feature.news.NewsFragment
+import com.cube.cube_test.feature.attractions.AttractionsListFragment
+import com.cube.cube_test.feature.news.NewsListFragment
 import com.cube.cube_test.feature.setting.SettingFragment
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 
 /** 首頁 */
 class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
@@ -42,26 +37,7 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
             }
         })
 
-        setLoading(true)
-        CubeTestApplication
-            .instance()
-            .mApiManager
-            .APIAttractionsDrawer()
-            .callGetAttractions(object : IOnOptionLister<ApiAttractions.GetAttractions.Response> {
-                override fun onExecute(option: ApiAttractions.GetAttractions.Response) {
-                    Log.d("","")
-                }
-            },object :IOnOptionLister<String>{
-                override fun onExecute(option: String) {
-                    showToast(option)
 
-                }
-            },object : IOnOptionLister<Void?>{
-                override fun onExecute(option: Void?) {
-                    setLoading(false)
-                }
-
-            })
         onTabChanged(0)
         loadData(readIntentRequest(Data.Request::class.java))
     }
@@ -79,9 +55,9 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     /** 頁面資料 */
     var mData = Data()
     /** 景點 fragment */
-    var mAttractionsFragment = AttractionsFragment()
+    var mAttractionsListFragment = AttractionsListFragment()
     /** 最新消息 fragment */
-    var mNewsFragment = NewsFragment()
+    var mNewsListFragment = NewsListFragment()
     /** 設定 fragment */
     var mSettingFragment = SettingFragment()
     /** 用於暫存當前切換的Fragment marker */
@@ -109,19 +85,19 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
 
         when (position) {
             0 -> {
-                id = getFragmentId(AttractionsFragment ::class.java)
+                id = getFragmentId(AttractionsListFragment ::class.java)
                 val frgament = supportFragmentManager.findFragmentByTag(id)
                 nowFragment = if (frgament == null){
-                    mAttractionsFragment
+                    mAttractionsListFragment
                 }else{
                     frgament as CubeTestFragment
                 }
             }
             1 -> {
-                id = getFragmentId(NewsFragment ::class.java)
+                id = getFragmentId(NewsListFragment ::class.java)
                 val frgament = supportFragmentManager.findFragmentByTag(id)
                 nowFragment = if (frgament == null){
-                    mNewsFragment
+                    mNewsListFragment
                 }else{
                     frgament as CubeTestFragment
                 }
@@ -169,11 +145,8 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     }
 
     // MARK:- ====================== Class Data
-    class Data : FeatureData<Data.Request,Data.Response>(){
-        init {
-            Request()
-            Response()
-        }
+    class Data : FeatureData<Data.Request,Data.Response>(Request(),Response()){
+
         class Request(){
 
         }

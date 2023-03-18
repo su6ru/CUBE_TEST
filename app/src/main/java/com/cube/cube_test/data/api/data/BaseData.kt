@@ -9,9 +9,10 @@ open class BaseData {
     }
 
     open class Response<JObject>{
+        /** 資料比數 */
         @SerializedName("total")
-        private var mTotal: Int? = null
+        public var mTotal: Int = 0
         @SerializedName("data")
-        private var mData: JObject? = null
+        public var mData: JObject? = null
     }
 }

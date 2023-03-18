@@ -3,5 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
+    <!--內容-->
+    <com.ci.v1_ci_view.ui.layout.CILinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--語言Title-->
+        <com.ci.v1_ci_view.ui.textview.CITextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="語言"
+            android:textSize="@dimen/dimens_normal"
+            android:textColor="@color/white"/>
+        <!--語言-->
+        <com.ci.v1_ci_view.ui.textview.CITextView
+            android:id="@+id/lanTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="語言"
+            android:textSize="@dimen/dimens_small"
+            android:textColor="@color/white"/>
+    </com.ci.v1_ci_view.ui.layout.CILinearLayout>
 
 </com.ci.v1_ci_view.ui.layout.CIFrameLayout>
