@@ -1,16 +1,23 @@
 package com.cube.cube_test.feature.main
 
+import android.content.Intent
+import android.content.res.Configuration
+import android.content.res.Resources
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.cube.cube_test.R
 import com.cube.cube_test.custom.activity.CubeTestActivity
+import com.cube.cube_test.custom.application.CubeTestApplication
 import com.cube.cube_test.custom.fragment.CubeTestFragment
 import com.cube.cube_test.data.feature.FeatureData
 import com.cube.cube_test.feature.attractions.AttractionsListFragment
 import com.cube.cube_test.feature.news.NewsListFragment
+import com.cube.cube_test.feature.setting.LanguageListActivity
 import com.cube.cube_test.feature.setting.SettingFragment
 import com.google.android.material.tabs.TabLayout
+import java.util.*
 
 /** 首頁 */
 class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
@@ -42,6 +49,36 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
         loadData(readIntentRequest(Data.Request::class.java))
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == LanguageListActivity.REQUEST_CODE){
+            if (resultCode == RESULT_OK){
+                val dbLanguageDetail = CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+                val dbLanguageId = dbLanguageDetail?.mId
+                if (mOriginLanguageId == null){
+                    return
+                }
+                if (mOriginLanguageId == dbLanguageId){
+                    return
+                }
+                val localeLanguage = dbLanguageDetail?.mLocaleLanguage
+                val localeCountry = dbLanguageDetail?.mLocaleCountry
+
+
+                val locale = Locale(localeLanguage,localeCountry)
+                val res: Resources = this.resources
+                val dm: DisplayMetrics = res.displayMetrics
+                val conf: Configuration = res.configuration.apply {
+                    setLocale(locale)
+                }
+                res.updateConfiguration(conf, dm)
+                this.onConfigurationChanged(conf)
+
+            }
+        }
+
+
+    }
 
     // MARK:- ====================== View
     /** TabLayout */
@@ -62,6 +99,7 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     var mSettingFragment = SettingFragment()
     /** 用於暫存當前切換的Fragment marker */
     var mTabPosition = 999
+    var mOriginLanguageId :String? = null
     // MARK:- ====================== Event
     /** 當點擊 tab */
     private fun onTabChanged(position : Int){
@@ -142,6 +180,9 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     // MARK:- ====================== Method
     override fun loadData(request: Data.Request?) {
         super.loadData(request)
+        val dbLanguageDetail = CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+        mOriginLanguageId = dbLanguageDetail?.mId
+
     }
 
     // MARK:- ====================== Class Data

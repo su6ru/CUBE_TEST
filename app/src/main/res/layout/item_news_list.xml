@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ci.v1_ci_view.ui.layout.CILinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/black">
+    <com.ci.v1_ci_view.ui.textview.CITextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimens_normal"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+    <com.ci.v1_ci_view.ui.textview.CITextView
+        android:id="@+id/introductionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/dimens_normal"
+        android:textColor="@color/white"
+        android:maxLines="2"
+        android:ellipsize="end"/>
+    <View
+        style="@style/Line"
+        android:layout_marginTop="12dp"/>
+</com.ci.v1_ci_view.ui.layout.CILinearLayout>

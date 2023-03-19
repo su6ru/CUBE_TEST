@@ -1,7 +1,7 @@
 package com.cube.cube_test.data.detail
 
 import com.google.gson.annotations.SerializedName
-
+/** 遊憩景點 data model */
 class AttractionsDetail {
 
     @SerializedName("id")

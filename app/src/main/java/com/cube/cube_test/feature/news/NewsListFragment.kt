@@ -1,5 +1,6 @@
 package com.cube.cube_test.feature.news
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,11 @@ class NewsListFragment : CubeTestFragment(R.layout.fragment_news_list) {
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }
-
+    override fun onResume() {
+        super.onResume()
+    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+    }
     /** 列表 */
 }

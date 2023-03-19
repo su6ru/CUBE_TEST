@@ -17,17 +17,17 @@ class CIToolbar @JvmOverloads constructor(
 
 
 
-    // MARK:-=================View
+    // MARK:-================= View
     private val mMainLayout : LinearLayoutCompat by lazy {
         findViewById(R.id.layout_main)
     }
     private val mTitleTextView : AppCompatTextView by lazy {
         findViewById(R.id.text_title)
     }
-    // MARK:-=================Data
-    // MARK:-=================Event
+    // MARK:-================= Data
+    // MARK:-================= Event
 
-    // MARK:-=================Method
+    // MARK:-================= Method
     init {
 
         inflate(context, R.layout.view_ci_toolbar, this)

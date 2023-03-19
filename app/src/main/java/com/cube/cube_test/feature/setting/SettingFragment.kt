@@ -3,9 +3,11 @@ package com.cube.cube_test.feature.setting
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.app.ActivityCompat.recreate
 import com.ci.v1_ci_view.ui.textview.CITextView
 import com.ci.v1_ci_view.ui.until.CIUntil
 import com.cube.cube_test.R
+import com.cube.cube_test.custom.activity.CubeTestActivity
 import com.cube.cube_test.custom.application.CubeTestApplication
 import com.cube.cube_test.custom.fragment.CubeTestFragment
 import com.cube.cube_test.data.detail.LanguageDetail
@@ -34,7 +36,9 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
         run{
             //onLanChangeClick
             mLanTextView.setOnClickListener {
-                onLanChangeClick()
+
+                LanguageListActivity.startActivity(activity as CubeTestActivity<*>,LanguageListActivity.REQUEST_CODE)
+               // onLanChangeClick()
             }
         }
         //Method
@@ -83,10 +87,10 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
         val languageDetail = languageRawList[position]
 
         CubeTestApplication.instance().mCubeTestManager.mLanguageDetail = languageDetail
-
+        //更換語言顯示
         mLanTextView.text = languageDetail.mName
 
-
+        recreate(requireActivity())
 
 
         Log.d("","")

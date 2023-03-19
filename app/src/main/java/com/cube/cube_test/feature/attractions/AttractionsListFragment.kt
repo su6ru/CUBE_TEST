@@ -1,6 +1,7 @@
 package com.cube.cube_test.feature.attractions
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -23,9 +24,9 @@ import com.cube.cube_test.util.CubeTestUntil
 /** 遊憩景點 列表 */
 class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_list) {
 
-    // MARK:- ===================== Define
+    // MARK:- ========================== Define
 
-    // MARK:- ===================== Life
+    // MARK:- ========================== Life
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Data
@@ -49,7 +50,28 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
         loadData(null)
 
     }
-    // MARK:- ====================== View
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+    // MARK:- ====================== Data
+    // MARK:- ====================== Event
+
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        loadData(null)
+
+    }
+    // MARK:- ========================== View
     /** 資料列表 */
     private val mRecyclerView : CIRecyclerView by lazy {
         requireView().findViewById(R.id.list_content)
@@ -106,12 +128,17 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
             ?: return
         mData.mRequest.mPage = nextPage
 
+
+        val languageDetail= CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+
+        val url = languageDetail?.mParameter+CubeTestConfig.Api.ATTRACTIONS_URL
+        //呼叫API
         setLoading(true)
         CubeTestApplication
             .instance()
             .mApiManager
             .APIAttractionsDrawer()
-            .callGetAttractions(nextPage,object : IOnOptionLister<ApiAttractions.GetAttractions.Response> {
+            .callGetAttractions(url.toString(),nextPage,object : IOnOptionLister<ApiAttractions.GetAttractions.Response> {
                 override fun onExecute(option: ApiAttractions.GetAttractions.Response) {
                     Log.d("","")
                     val apiAttractionsList = option.mData
@@ -145,13 +172,16 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
         super.loadData(request)
         //API呼叫 並將資料套到列表中
         kotlin.run {
+            val languageDetail= CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+            val url = languageDetail?.mParameter+CubeTestConfig.Api.ATTRACTIONS_URL
+
             val page: String = CubeTestConfig.Api.Companion.Property.DEFAULT_PAGE
             setLoading(true)
             CubeTestApplication
                 .instance()
                 .mApiManager
                 .APIAttractionsDrawer()
-                .callGetAttractions(page,
+                .callGetAttractions(url.toString(),page,
                     object : IOnOptionLister<ApiAttractions.GetAttractions.Response> {
                         override fun onExecute(option: ApiAttractions.GetAttractions.Response) {
                             Log.d("", "")
@@ -174,7 +204,7 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
                     })
         }
     }
-    // MARK:- ====================== AttractionsListViewHolder
+    // MARK:- ========================== AttractionsListViewHolder
     class AttractionsListViewHolder(context:Context) : RecyclerView.ViewHolder(View.inflate(context,R.layout.item_attractions_list,null)) {
         init {
 
@@ -194,7 +224,7 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
 
     }
 
-    // MARK:- ====================== Class Data
+    // MARK:- ========================== Class Data
     class Data : FeatureData<Data.Request, Data.Response>(Data.Request(),Data.Response()){
         /*init {
             mRequest = Request()

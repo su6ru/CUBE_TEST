@@ -6,6 +6,7 @@ import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
 import com.cube.cube_test.R
 import com.cube.cube_test.data.api.data.BaseData
 import com.cube.cube_test.data.api.drawer.ApiAttractions
+import com.cube.cube_test.data.api.drawer.ApiEvents
 import com.cube.cube_test.data.define.CubeTestConfig
 import com.google.gson.Gson
 import okhttp3.Interceptor
@@ -17,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 import java.security.cert.X509Certificate
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -52,20 +54,18 @@ class ApiManager(context: Context) {
 
 
 
-    val mIApiService = Retrofit.Builder()
-        .baseUrl(CubeTestConfig.Api.URL)
+    val mIApiService: IApiService = Retrofit.Builder()
+        .baseUrl(CubeTestConfig.Api.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(createOkHttpClient())
         .build()
         .create(IApiService ::class.java)
 
-   // TResponse : BaseData.Response
     inner class APICallBack<TResponse>(
         private val mSuccessListener : IOnOptionLister<TResponse>,
         private val mFailListener : IOnOptionLister<String>,
         private val mCompleteListener : IOnOptionLister<Void?>,
     ) :BaseData(),Callback<TResponse>{
-        //application/json
         override fun onResponse(call: Call<TResponse>, response: retrofit2.Response<TResponse>) {
             val requestRaw = response.raw()
             val request = requestRaw.request()
@@ -123,14 +123,19 @@ class ApiManager(context: Context) {
        }
     }
 
+
+    /** 遊憩景點API呼叫控制 */
     inner class APIAttractionsDrawer{
         fun callGetAttractions(
+            url: String,
             page: String,
             successListener: IOnOptionLister<ApiAttractions.GetAttractions.Response>,
             failListener: IOnOptionLister<String>,
             completeListener: IOnOptionLister<Void?>){
+
+
             mIApiService
-                .getAttractions(page)
+                .getAttractions(url,page)
                 .enqueue(APICallBack(
                     successListener,failListener,completeListener))
         }
@@ -142,8 +147,11 @@ class ApiManager(context: Context) {
 
     interface IApiService {
         //============================== 普通共用類
-        /** 查詢app資訊(公告&版本號)  */
-        @GET("zh-tw/Attractions/All?")
-        fun getAttractions(@Query("page") page:String): Call<ApiAttractions.GetAttractions.Response>
+        /** 查詢遊憩景點  */
+        @GET
+        fun getAttractions(@Url url:String?,@Query("page") page:String): Call<ApiAttractions.GetAttractions.Response>
+        /** 查詢最新消息  */
+        @GET
+        fun getNews(@Url url:String?,@Query("page") page:String): Call<ApiEvents.GetNews.Response>
     }
 }

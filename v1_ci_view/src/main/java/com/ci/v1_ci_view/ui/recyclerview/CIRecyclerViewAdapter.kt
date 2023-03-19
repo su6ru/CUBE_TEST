@@ -3,7 +3,9 @@ package com.ci.v1_ci_view.ui.recyclerview
 import androidx.recyclerview.widget.RecyclerView
 /** RecyclerViewAdapter */
 abstract class CIRecyclerViewAdapter <THolder : RecyclerView.ViewHolder, TObject> : RecyclerView.Adapter<THolder>() {
+
     var mObjectList = ArrayList<TObject>()
+    /** 取得adapter Size */
     override fun getItemCount(): Int {
         return mObjectList.size
     }

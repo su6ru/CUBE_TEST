@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.ci.v1_ci_view.ui.layout.CIFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/black">
-    <!--內容-->
+    <!--toolbar+內容-->
     <com.ci.v1_ci_view.ui.layout.CILinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!--語言Title-->
-        <com.ci.v1_ci_view.ui.textview.CITextView
+        <!--Toolbar-->
+        <com.ci.v1_ci_view.ui.toolbar.CIToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="語言設定"
-            android:textSize="@dimen/dimens_normal"
-            android:textColor="@color/white"/>
-        <!--語言-->
+            app:title_text="語言設定"
+            app:showLine="true"/>
         <com.ci.v1_ci_view.ui.textview.CITextView
-            android:id="@+id/lanTextView"
+            android:id="@+id/en"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="語言"
-            android:textSize="@dimen/dimens_small"
-            android:textColor="@color/white"/>
+            android:text="en"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimens_normal"/>
+        <!--資料列表-->
+        <com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
+            android:id="@+id/list_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </com.ci.v1_ci_view.ui.layout.CILinearLayout>
+
 
 </com.ci.v1_ci_view.ui.layout.CIFrameLayout>
