@@ -8,10 +8,10 @@ class NewsDetail {
     var mId : Int? = null
     /** 標題 */
     @SerializedName("title")
-    var mTitle : String? = null
+    var mTitle : String? = ""
     /** 說明 */
     @SerializedName("description")
-    var mDescription : String? = null
+    var mDescription : String = ""
     /** 開放時間 */
     @SerializedName("begin")
     var mBegin : String? = null

@@ -1,9 +1,11 @@
 package com.cube.cube_test.feature.setting
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat.recreate
+import com.ci.v1_ci_view.ui.layout.CILinearLayout
 import com.ci.v1_ci_view.ui.textview.CITextView
 import com.ci.v1_ci_view.ui.until.CIUntil
 import com.cube.cube_test.R
@@ -34,11 +36,12 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
         }
         //Event
         run{
+
             //onLanChangeClick
-            mLanTextView.setOnClickListener {
+            mLanguageLayout.setOnClickListener {
 
                 LanguageListActivity.startActivity(activity as CubeTestActivity<*>,LanguageListActivity.REQUEST_CODE)
-               // onLanChangeClick()
+                // onLanChangeClick()
             }
         }
         //Method
@@ -51,9 +54,17 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
 
 
     // MARK:- ====================== View
+    /** 語言layout */
+    private val mLanguageLayout: CILinearLayout by lazy {
+        requireView().findViewById(R.id.layout_language)
+    }
+    /** 語言設定title */
+    private val mLanguageTitleTextView: CITextView by lazy {
+        requireView().findViewById(R.id.text_language_title)
+    }
     /** 當前語言 */
-    private val mLanTextView : CITextView by lazy {
-        requireView().findViewById(R.id.lanTextView)
+    private val mLanguageTextView: CITextView by lazy {
+        requireView().findViewById(R.id.text_language)
     }
     // MARK:- ========================== Data
     /** 頁面資料 */
@@ -61,6 +72,7 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
 
     // MARK:- ========================== Event
     private fun onLanChangeClick(){
+        /*
         val languageRawStr = CIUntil.byRawResource(requireContext(),R.raw.language)
         val languageRawList :MutableList<LanguageDetail> =
             Gson().fromJson(languageRawStr,object :TypeToken<List<LanguageDetail>>(){}.type)
@@ -91,16 +103,24 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
         mLanTextView.text = languageDetail.mName
 
         recreate(requireActivity())
-
+        */
 
         Log.d("","")
+    }
+
+    /** 觸發語言設定 */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val languageDetail = CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+        mLanguageTextView.text = languageDetail?.mName
+        mLanguageTitleTextView.text = getText(R.string.n_language_setting)
     }
     // MARK:- ========================== Method
 
     override fun loadData(request: Any?) {
         super.loadData(request)
         val languageDetail = CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
-        mLanTextView.text = languageDetail?.mName
+        mLanguageTextView.text = languageDetail?.mName
 
     }
 

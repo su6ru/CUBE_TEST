@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">Conexión fallida</string>
+    <string name="msg_data_anomaly">Datos anómalos</string>
+    <string name="msg_this_item_no_data_web">Este elemento no tiene una dirección de origen de datos</string>
+
+    <string name="n_click_here_open_navigation">Haga clic aquí para abrir la navegación</string>
+    <string name="n_attractions">Atracciones</string>
+    <string name="n_news">Noticias</string>
+    <string name="n_setting">Configuración</string>
+    <string name="n_language_setting">Configuración del idioma</string>
+    <string name="n_go_web">Ir al sitio web</string>
+</resources>

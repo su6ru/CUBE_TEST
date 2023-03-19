@@ -4,7 +4,8 @@
 
     <!-- 網路 -->
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:name=".custom.application.CubeTestApplication"
         android:allowBackup="true"
@@ -30,6 +31,11 @@
                 android:value="" />
         </activity>
         <activity android:name=".feature.setting.LanguageListActivity"/>
+        <activity android:name=".feature.news.NewsContentActivity"/>
+        <activity android:name=".feature.attractions.AttractionsContentActivity"/>
+        <activity android:name=".feature.webview.WebViewActivity"/>
+
+
     </application>
 
 </manifest>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">การเชื่อมต่อล้มเหลว</string>
+    <string name="msg_data_anomaly">ข้อมูลผิดปกติ</string>
+    <string name="msg_this_item_no_data_web">ไม่มีแหล่งข้อมูลสำหรับรายการนี้</string>
+
+    <string name="n_click_here_open_navigation">คลิกที่นี่เพื่อเปิดการนำทาง</string>
+    <string name="n_attractions">สถานที่ท่องเที่ยว</string>
+    <string name="n_news">ข่าวสารล่าสุด</string>
+    <string name="n_setting">การตั้งค่า</string>
+    <string name="n_language_setting">การตั้งค่าภาษา</string>
+    <string name="n_go_web">ไปยังเว็บไซต์</string>
+</resources>

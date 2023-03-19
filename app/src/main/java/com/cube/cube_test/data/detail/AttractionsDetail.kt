@@ -8,12 +8,12 @@ class AttractionsDetail {
     var mId : Int? = null
     /** 地點名稱 */
     @SerializedName("name")
-    var mName : String? = null
+    var mName : String = ""
     @SerializedName("open_status")
     var mOpenStatus : Int? = null
     /** 介紹 */
     @SerializedName("introduction")
-    var mIntroduction : String? = null
+    var mIntroduction : String = ""
     /** 開放時間 */
     @SerializedName("open_time")
     var mOpenTime : String? = null

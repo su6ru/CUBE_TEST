@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">Gagal koneksi</string>
+    <string name="msg_data_anomaly">Data anomali</string>
+    <string name="msg_this_item_no_data_web">Item ini tidak memiliki sumber data web</string>
+
+    <string name="n_click_here_open_navigation">Klik di sini untuk membuka navigasi</string>
+    <string name="n_attractions">Tempat wisata</string>
+    <string name="n_news">Berita terbaru</string>
+    <string name="n_setting">Pengaturan</string>
+    <string name="n_language_setting">Pengaturan bahasa</string>
+    <string name="n_go_web">Buka web</string>
+</resources>

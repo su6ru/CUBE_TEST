@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">Kết nối thất bại</string>
+    <string name="msg_data_anomaly">Dữ liệu bất thường</string>
+    <string name="msg_this_item_no_data_web">Mục này không có địa chỉ dữ liệu nguồn</string>
+
+    <string name="n_click_here_open_navigation">Nhấp vào đây để mở điều hướng</string>
+    <string name="n_attractions">Điểm du lịch</string>
+    <string name="n_news">Tin tức mới nhất</string>
+    <string name="n_setting">Cài đặt</string>
+    <string name="n_language_setting">Cài đặt ngôn ngữ</string>
+    <string name="n_go_web">Truy cập trang web</string>
+</resources>

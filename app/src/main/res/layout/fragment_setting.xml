@@ -7,24 +7,43 @@
     <com.ci.v1_ci_view.ui.layout.CILinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="12dp"
         android:orientation="vertical">
-        <!--語言Title-->
-        <com.ci.v1_ci_view.ui.textview.CITextView
+        <!--內容-->
+        <com.ci.v1_ci_view.ui.layout.CILinearLayout
+            android:id="@+id/layout_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="語言設定"
-            android:textSize="@dimen/dimens_normal"
-            android:textColor="@color/white"/>
-        <!--語言-->
-        <com.ci.v1_ci_view.ui.textview.CITextView
-            android:id="@+id/lanTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="語言"
-            android:textSize="@dimen/dimens_small"
-            android:textColor="@color/white"/>
+            android:orientation="horizontal">
+            <!--語言設定 title-->
+            <com.ci.v1_ci_view.ui.textview.CITextView
+                android:id="@+id/text_language_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/n_language_setting"
+                android:textSize="@dimen/dimens_normal"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/ic_language"/>
+            <!--當前語言-->
+            <com.ci.v1_ci_view.ui.textview.CITextView
+                android:id="@+id/text_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:textSize="@dimen/dimens_small"
+                android:textColor="@color/white"
+                android:clickable="false"/>
+            <!--next圖示-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_next"/>
+        </com.ci.v1_ci_view.ui.layout.CILinearLayout>
+        <View
+            style="@style/Line"
+            android:layout_marginTop="12dp"/>
     </com.ci.v1_ci_view.ui.layout.CILinearLayout>
 
 </com.ci.v1_ci_view.ui.layout.CIFrameLayout>

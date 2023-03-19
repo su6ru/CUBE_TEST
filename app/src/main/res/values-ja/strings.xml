@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">接続失敗</string>
+    <string name="msg_data_anomaly">データ異常</string>
+    <string name="msg_this_item_no_data_web">このアイテムにはデータソースのWebサイトがありません</string>
+
+    <string name="n_click_here_open_navigation">ここをクリックしてナビゲーションを開く</string>
+    <string name="n_attractions">レジャー施設</string>
+    <string name="n_news">最新ニュース</string>
+    <string name="n_setting">設定</string>
+    <string name="n_language_setting">言語設定</string>
+    <string name="n_go_web">Webサイトに移動</string>
+</resources>

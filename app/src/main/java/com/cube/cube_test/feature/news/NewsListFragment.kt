@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
@@ -20,6 +21,7 @@ import com.cube.cube_test.data.api.drawer.ApiEvents
 import com.cube.cube_test.data.define.CubeTestConfig
 import com.cube.cube_test.data.detail.NewsDetail
 import com.cube.cube_test.data.feature.FeatureData
+import com.cube.cube_test.feature.main.MainActivity
 import com.cube.cube_test.util.CubeTestUntil
 
 /** 最新消息列表 */
@@ -65,8 +67,9 @@ class NewsListFragment : CubeTestFragment(R.layout.fragment_news_list) {
     private val mListAdapter = object : CIRecyclerViewAdapter<NewsListViewHolder, NewsDetail>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
             val newsListViewHolder = NewsListViewHolder(parent.context)
+            //onItemListClick
             newsListViewHolder.itemView.setOnClickListener {
-
+                onItemListClick(getItem(newsListViewHolder.adapterPosition))
             }
 
             return newsListViewHolder
@@ -87,6 +90,20 @@ class NewsListFragment : CubeTestFragment(R.layout.fragment_news_list) {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         loadData(null)
+
+    }
+    /** 點擊任一最新消息 */
+    private fun onItemListClick(newsDetail: NewsDetail){
+        val request = NewsContentActivity.Data.Request()
+
+        request.newsDetail = newsDetail
+
+        if (activity is MainActivity) {
+
+            val mainActivity = activity as MainActivity
+
+            NewsContentActivity.startActivity(mainActivity,request)
+        }
 
     }
     /** 當滑動列表 */
@@ -190,15 +207,17 @@ class NewsListFragment : CubeTestFragment(R.layout.fragment_news_list) {
     class NewsListViewHolder(context: Context) : RecyclerView.ViewHolder(View.inflate(context,R.layout.item_news_list,null)) {
         /** 標題 */
         private val mTitleTextView : CITextView by lazy {
-            itemView.findViewById(R.id.titleTextView)
+            itemView.findViewById(R.id.text_title)
         }
         /** 說明 */
         private val mDescriptionTextView : CITextView by lazy {
-            itemView.findViewById(R.id.descriptionTextView)
+            itemView.findViewById(R.id.text_description)
         }
         fun loadData(newsDetail: NewsDetail){
-            mTitleTextView.text = newsDetail.mTitle
-            mDescriptionTextView.text = newsDetail.mDescription
+            mTitleTextView.text = HtmlCompat.fromHtml(newsDetail.mTitle.toString(), HtmlCompat.FROM_HTML_MODE_COMPACT)
+
+            mDescriptionTextView.text = HtmlCompat.fromHtml(newsDetail.mDescription, HtmlCompat.FROM_HTML_MODE_COMPACT)
+
         }
 
 

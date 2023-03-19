@@ -3,16 +3,16 @@ package com.cube.cube_test.manager
 import android.content.Context
 import com.cube.cube_test.data.detail.LanguageDetail
 import com.google.gson.Gson
-import java.security.AccessController.getContext
 
 open class CubeTestManager(private val context: Context) {
     companion object{
-        const val Language ="Language"
-    }
+        const val KEY_LANGUAGE_DETAIL ="LanguageDetail"
 
+    }
+    /** 用於存取目前選了何種語系 所對應的 LanguageDetail*/
     var mLanguageDetail : LanguageDetail? = null
         get() {
-            var languageDetail = Gson().fromJson(readDisk(Language), LanguageDetail::class.java)
+            var languageDetail = Gson().fromJson(readDisk(KEY_LANGUAGE_DETAIL), LanguageDetail::class.java)
             if (languageDetail == null){
                 languageDetail = LanguageDetail()
                 languageDetail.mId = "1"
@@ -23,10 +23,9 @@ open class CubeTestManager(private val context: Context) {
         }
         set(value) {
             field = value
-            writeDisk(Language, Gson().toJson(value))
+            writeDisk(KEY_LANGUAGE_DETAIL, Gson().toJson(value))
 
         }
-
 
     /** 寫入資料 */
     protected fun writeDisk(key: String, content: String) {

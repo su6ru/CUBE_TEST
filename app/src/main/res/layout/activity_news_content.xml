@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ci.v1_ci_view.ui.layout.CIFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black">
+    <!--toolbar+內容-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.ci.v1_ci_view.ui.layout.CILinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--Toolbar-->
+            <com.cube.cube_test.custom.view.CubeTestToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title_text="@string/n_news"
+                app:showLine="true"/>
+            <!--Title-->
+            <com.ci.v1_ci_view.ui.textview.CITextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimens_small"
+                android:textIsSelectable="true"/>
+            <!--內文-->
+            <com.ci.v1_ci_view.ui.textview.CITextView
+                android:id="@+id/text_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dimens_very_very_small"
+                android:autoLink="web"
+                android:textIsSelectable="true"/>
+        </com.ci.v1_ci_view.ui.layout.CILinearLayout>
+
+    </ScrollView>
+
+
+</com.ci.v1_ci_view.ui.layout.CIFrameLayout>

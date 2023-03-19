@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">连接失败</string>
+    <string name="msg_data_anomaly">数据异常</string>
+    <string name="msg_this_item_no_data_web">此项目并无数据源网址</string>
+
+    <string name="n_click_here_open_navigation">点击此处开启导航</string>
+    <string name="n_attractions">游憩景点</string>
+    <string name="n_news">最新消息</string>
+    <string name="n_setting">设置</string>
+    <string name="n_language_setting">语言设置</string>
+    <string name="n_go_web">前往网页</string>
+</resources>

@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.ci.v1_ci_view.R
 /** CIToolbar */
-class CIToolbar @JvmOverloads constructor(
+open class CIToolbar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : LinearLayoutCompat(context, attrs) {
 

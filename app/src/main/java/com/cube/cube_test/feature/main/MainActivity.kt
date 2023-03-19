@@ -1,5 +1,6 @@
 package com.cube.cube_test.feature.main
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -7,16 +8,22 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.ci.v1_ci_view.ui.activity.CIActivity
+import com.ci.v1_ci_view.ui.until.CIUntil
 import com.cube.cube_test.R
 import com.cube.cube_test.custom.activity.CubeTestActivity
 import com.cube.cube_test.custom.application.CubeTestApplication
 import com.cube.cube_test.custom.fragment.CubeTestFragment
+import com.cube.cube_test.data.detail.LanguageDetail
 import com.cube.cube_test.data.feature.FeatureData
 import com.cube.cube_test.feature.attractions.AttractionsListFragment
 import com.cube.cube_test.feature.news.NewsListFragment
 import com.cube.cube_test.feature.setting.LanguageListActivity
 import com.cube.cube_test.feature.setting.SettingFragment
+import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.util.*
 
 /** 首頁 */
@@ -27,8 +34,6 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
         mTabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -44,11 +49,54 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
             }
         })
 
-
         onTabChanged(0)
         loadData(readIntentRequest(Data.Request::class.java))
     }
 
+    override fun onResume() {
+        super.onResume()
+        //遊憩景點
+        val attractionsTabItem = mTabLayout.getTabAt(0)
+        if (attractionsTabItem!=null){
+            attractionsTabItem.text = getText(R.string.n_attractions)
+        }
+        //最新消息
+        val newsTabItem = mTabLayout.getTabAt(1)
+        if (newsTabItem!=null){
+            newsTabItem.text = getText(R.string.n_news)
+        }
+        //設定
+        val settingTabItem = mTabLayout.getTabAt(2)
+        if (settingTabItem!=null){
+            settingTabItem.text = getText(R.string.n_setting)
+        }
+    }
+
+    /** 當Activity開啟時 自動進入此方法，偵測上次於APP內部將語系設置為 英文/中文 用於決定載入何語系   */
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(newBase)
+
+        val dbLanguageDetail= CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+        val dbLanguageId = dbLanguageDetail?.mId
+
+        val languageRawStr = CIUntil.byRawResource(this@MainActivity,R.raw.language)
+        val languageRawList :MutableList<LanguageDetail> =
+            Gson().fromJson(languageRawStr,object : TypeToken<List<LanguageDetail>>(){}.type)
+
+        for (i in 0..languageRawList.size){
+            val languageDetail = languageRawList[i]
+            val id = languageDetail.mId
+            if (id == dbLanguageId){
+                val localeLanguage = dbLanguageDetail?.mLocaleLanguage
+                val localeCountry = dbLanguageDetail?.mLocaleCountry
+                val locale = Locale(localeLanguage,localeCountry)
+                setAppLocale(locale)
+                return
+            }
+        }
+
+        //super.attachBaseContext(newBase);
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == LanguageListActivity.REQUEST_CODE){
@@ -66,13 +114,21 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
 
 
                 val locale = Locale(localeLanguage,localeCountry)
+                setAppLocale(locale)
+
+
+                /*
+                val localeLanguage = dbLanguageDetail?.mLocaleLanguage
+                val localeCountry = dbLanguageDetail?.mLocaleCountry
+
+                val locale = Locale(localeLanguage,localeCountry)
                 val res: Resources = this.resources
                 val dm: DisplayMetrics = res.displayMetrics
                 val conf: Configuration = res.configuration.apply {
                     setLocale(locale)
                 }
                 res.updateConfiguration(conf, dm)
-                this.onConfigurationChanged(conf)
+                this.onConfigurationChanged(conf)*/
 
             }
         }
@@ -85,6 +141,7 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     val mTabLayout : TabLayout by lazy {
         findViewById(R.id.tab_layout)
     }
+
     override fun getMainView(): View {
         return findViewById(R.id.layout_parent)
     }
@@ -101,6 +158,29 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
     var mTabPosition = 999
     var mOriginLanguageId :String? = null
     // MARK:- ====================== Event
+    /** 觸發語言設定 */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val dbLanguageDetail = CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
+        mOriginLanguageId = dbLanguageDetail?.mId
+        /*
+          //遊憩景點
+          val attractionsTabItem = mTabLayout.getTabAt(0)
+          if (attractionsTabItem!=null){
+              attractionsTabItem.text = getText(R.string.n_attractions)
+          }
+          //最新消息
+          val newsTabItem = mTabLayout.getTabAt(1)
+          if (newsTabItem!=null){
+              newsTabItem.text = getText(R.string.n_news)
+          }
+          //設定
+          val settingTabItem = mTabLayout.getTabAt(2)
+          if (settingTabItem!=null){
+              settingTabItem.text = getText(R.string.n_setting)
+          }*/
+    }
+
     /** 當點擊 tab */
     private fun onTabChanged(position : Int){
         // 索引無變化 返回

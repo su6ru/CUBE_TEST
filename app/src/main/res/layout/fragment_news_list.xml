@@ -2,7 +2,7 @@
 <com.ci.v1_ci_view.ui.layout.CIFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray">
+    android:background="@color/black">
     <!-- 資料列表 -->
     <com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
         android:id="@+id/list_content"

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">Connection failed</string>
+    <string name="msg_data_anomaly">Data anomaly</string>
+    <string name="msg_this_item_no_data_web">No data source website for this item</string>
+
+    <string name="n_click_here_open_navigation">Click here to open navigation</string>
+    <string name="n_attractions">Attractions</string>
+    <string name="n_news">News</string>
+    <string name="n_setting">Settings</string>
+    <string name="n_language_setting">Language settings</string>
+    <string name="n_go_web">Go to website</string>
+</resources>

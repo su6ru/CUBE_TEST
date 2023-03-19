@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CUBE_TEST</string>
+    <string name="msg_connect_fail">연결 실패</string>
+    <string name="msg_data_anomaly">데이터 이상</string>
+    <string name="msg_this_item_no_data_web">이 항목에는 데이터 원본 URL이 없습니다.</string>
+
+    <string name="n_click_here_open_navigation">여기를 클릭하여 내비게이션 열기</string>
+    <string name="n_attractions">레크레이션 지점</string>
+    <string name="n_news">최신 뉴스</string>
+    <string name="n_setting">설정</string>
+    <string name="n_language_setting">언어 설정</string>
+    <string name="n_go_web">웹 사이트로 이동</string>
+</resources>

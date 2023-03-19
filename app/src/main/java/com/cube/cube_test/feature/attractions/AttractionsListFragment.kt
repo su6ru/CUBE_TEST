@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
@@ -18,7 +19,10 @@ import com.cube.cube_test.custom.fragment.CubeTestFragment
 import com.cube.cube_test.data.api.drawer.ApiAttractions
 import com.cube.cube_test.data.define.CubeTestConfig
 import com.cube.cube_test.data.detail.AttractionsDetail
+import com.cube.cube_test.data.detail.NewsDetail
 import com.cube.cube_test.data.feature.FeatureData
+import com.cube.cube_test.feature.main.MainActivity
+import com.cube.cube_test.feature.news.NewsContentActivity
 import com.cube.cube_test.util.CubeTestUntil
 
 /** 遊憩景點 列表 */
@@ -64,12 +68,11 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
     private var isRecyclerViewSlideTopLock = true
     /** 資料配接器 */
     private val mListAdapter = object : CIRecyclerViewAdapter<AttractionsListViewHolder,AttractionsDetail>(){
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): AttractionsListViewHolder {
-            val attractionsListViewHolder = AttractionsListViewHolder(context!!)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttractionsListViewHolder {
+            val attractionsListViewHolder = AttractionsListViewHolder(parent.context)
+            //onItemListClick
             attractionsListViewHolder.itemView.setOnClickListener {
+                onItemListClick(getItem(attractionsListViewHolder.adapterPosition))
 
             }
 
@@ -80,7 +83,7 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
 
             val attractionsDetail = getItem(position)
 
-            holder.loadData(attractionsDetail,context!!)
+            holder.loadData(attractionsDetail)
         }
 
 
@@ -153,6 +156,20 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
             })
 
     }
+    /** 點擊任一遊憩景點 */
+    private fun onItemListClick(attractionsDetail: AttractionsDetail){
+        val request = AttractionsContentActivity.Data.Request()
+
+        request.mAttractionsDetail = attractionsDetail
+
+        if (activity is MainActivity) {
+
+            val mainActivity = activity as MainActivity
+
+            AttractionsContentActivity.startActivity(mainActivity,request)
+        }
+
+    }
     // MARK:- ========================== Method
 
     override fun loadData(request: Any?) {
@@ -196,15 +213,22 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
         init {
 
         }
-        private val mIntroductionTextView : CITextView by lazy {
-            itemView.findViewById(R.id.introductionTextView)
-        }
+        /** 標題 */
         private val mTitleTextView : CITextView by lazy {
-            itemView.findViewById(R.id.titleTextView)
+            itemView.findViewById(R.id.text_title)
         }
-        fun loadData(attractionsDetail: AttractionsDetail,context: Context){
+        /** 內容 */
+        private val mIntroductionTextView : CITextView by lazy {
+            itemView.findViewById(R.id.text_introduction)
+        }
+
+        fun loadData(attractionsDetail: AttractionsDetail){
             mIntroductionTextView.text = attractionsDetail.mIntroduction
             mTitleTextView.text = attractionsDetail.mName
+
+            mTitleTextView.text = HtmlCompat.fromHtml(attractionsDetail.mName, HtmlCompat.FROM_HTML_MODE_COMPACT)
+
+            mIntroductionTextView.text = HtmlCompat.fromHtml(attractionsDetail.mIntroduction, HtmlCompat.FROM_HTML_MODE_COMPACT)
         }
 
 

@@ -1,14 +1,12 @@
 package com.cube.cube_test.feature.setting
 
 import android.content.Context
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerViewAdapter
 import com.ci.v1_ci_view.ui.textview.CITextView
@@ -16,13 +14,11 @@ import com.ci.v1_ci_view.ui.until.CIUntil
 import com.cube.cube_test.R
 import com.cube.cube_test.custom.activity.CubeTestActivity
 import com.cube.cube_test.custom.application.CubeTestApplication
-import com.cube.cube_test.data.detail.AttractionsDetail
+import com.cube.cube_test.custom.view.CubeTestToolbar
 import com.cube.cube_test.data.detail.LanguageDetail
 import com.cube.cube_test.data.feature.FeatureData
-import com.cube.cube_test.feature.attractions.AttractionsListFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.util.*
 
 /** 語言設定 */
 class LanguageListActivity : CubeTestActivity<LanguageListActivity.Data.Request>() {
@@ -38,6 +34,14 @@ class LanguageListActivity : CubeTestActivity<LanguageListActivity.Data.Request>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_language)
+        //View
+        run {
+
+        }
+        //Data
+        run {
+
+        }
         //Data
         run {
             mRecyclerView.layoutManager = LinearLayoutManager(this@LanguageListActivity)
@@ -45,13 +49,25 @@ class LanguageListActivity : CubeTestActivity<LanguageListActivity.Data.Request>
         }
         //Event
         run{
+            //onBackClick
+            mToolbar.setBackButtonClickListener(object : IOnOptionLister<CubeTestToolbar> {
+                override fun onExecute(option: CubeTestToolbar) {
+                    onBackClick()
+                }
+            })
         }
-
-        loadData(readIntentRequest(Data.Request::class.java))
+        //Init
+        run {
+            loadData(readIntentRequest(Data.Request::class.java))
+        }
     }
 
 
     // MARK:- ====================== View
+    /** Toolbar */
+    private val mToolbar : CubeTestToolbar by lazy {
+        findViewById(R.id.toolbar)
+    }
     /** 資料列表 */
     private val mRecyclerView : CIRecyclerView by lazy {
         findViewById(R.id.list_content)
@@ -83,6 +99,10 @@ class LanguageListActivity : CubeTestActivity<LanguageListActivity.Data.Request>
 
     }
     // MARK:- ====================== Event
+    /** 點擊 toolbar的返回 */
+    private fun onBackClick(){
+        finish()
+    }
     /** 點擊任一語言 */
     private fun onLanguageListItemClick(languageDetail: LanguageDetail){
         CubeTestApplication.instance().mCubeTestManager.mLanguageDetail = languageDetail
