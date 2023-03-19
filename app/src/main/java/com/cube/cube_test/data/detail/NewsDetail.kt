@@ -11,7 +11,7 @@ class NewsDetail {
     var mTitle : String? = null
     /** 說明 */
     @SerializedName("description")
-    var mDescription : Int? = null
+    var mDescription : String? = null
     /** 開放時間 */
     @SerializedName("begin")
     var mBegin : String? = null

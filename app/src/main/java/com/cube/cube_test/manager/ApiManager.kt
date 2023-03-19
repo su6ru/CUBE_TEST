@@ -123,7 +123,21 @@ class ApiManager(context: Context) {
        }
     }
 
+    /** 遊憩景點API呼叫控制 */
+    inner class APIEventsDrawer{
+        fun callGetNews(
+            url: String,
+            page: String,
+            successListener: IOnOptionLister<ApiEvents.GetNews.Response>,
+            failListener: IOnOptionLister<String>,
+            completeListener: IOnOptionLister<Void?>){
 
+            mIApiService
+                .getNews(url,page)
+                .enqueue(APICallBack(
+                    successListener,failListener,completeListener))
+        }
+    }
     /** 遊憩景點API呼叫控制 */
     inner class APIAttractionsDrawer{
         fun callGetAttractions(
@@ -132,7 +146,6 @@ class ApiManager(context: Context) {
             successListener: IOnOptionLister<ApiAttractions.GetAttractions.Response>,
             failListener: IOnOptionLister<String>,
             completeListener: IOnOptionLister<Void?>){
-
 
             mIApiService
                 .getAttractions(url,page)

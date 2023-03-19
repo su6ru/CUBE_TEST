@@ -14,7 +14,7 @@
         android:maxLines="2"
         android:ellipsize="end"/>
     <com.ci.v1_ci_view.ui.textview.CITextView
-        android:id="@+id/introductionTextView"
+        android:id="@+id/descriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/dimens_normal"

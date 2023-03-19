@@ -3,5 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray">
-
+    <!-- 資料列表 -->
+    <com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
+        android:id="@+id/list_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </com.ci.v1_ci_view.ui.layout.CIFrameLayout>

@@ -51,26 +51,7 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
 
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-    // MARK:- ====================== Data
-    // MARK:- ====================== Event
-
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        loadData(null)
-
-    }
     // MARK:- ========================== View
     /** 資料列表 */
     private val mRecyclerView : CIRecyclerView by lazy {
@@ -106,6 +87,12 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
 
     }
     // MARK:- ========================== Event
+    /** 觸發語言切換 */
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        loadData(null)
+
+    }
     /** 當滑動列表 */
     private fun onRecyclerViewSlide(recyclerView : CIRecyclerView,status : Int) {
         if (recyclerView.isRecyclerViewSlideTop()){
