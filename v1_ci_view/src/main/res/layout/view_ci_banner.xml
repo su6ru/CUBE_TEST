@@ -20,7 +20,7 @@
         android:paddingEnd="8dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:background="#000000"
+        android:background="@drawable/ci_bg_rectangle_2000"
         android:minEms="3"
         android:gravity="center"
         tools:text="0/0"
