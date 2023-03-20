@@ -25,7 +25,6 @@
                 android:text="@string/n_attractions"/>
             <!--最新消息-->
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab_news"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/n_news"/>

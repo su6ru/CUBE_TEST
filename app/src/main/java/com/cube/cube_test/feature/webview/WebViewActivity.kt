@@ -53,7 +53,7 @@ class WebViewActivity : CubeTestActivity<WebViewActivity.Data.Request>() {
     private val mToolbar : CubeTestToolbar by lazy {
         findViewById(R.id.toolbar)
     }
-    /** 網頁 */
+    /** WebView */
     private val mWebView : WebView by lazy {
         findViewById(R.id.webview)
     }

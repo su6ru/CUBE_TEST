@@ -32,7 +32,7 @@ open class CubeTestActivity<TRequest> : CIActivity() {
         }
     }
 
-    // MARK:- ==========================Constructor
+    // MARK:- ========================== Life
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -56,6 +56,7 @@ open class CubeTestActivity<TRequest> : CIActivity() {
     public fun readIntentRequest(cls: Class<TRequest>?): TRequest{
         return Gson().fromJson(intent.getStringExtra(CubeTestConfig.Extra.KEY_JSON),cls)
     }
+    /** 語系更換 */
     public fun setAppLocale(locale: Locale){
         val res: Resources = this.resources
         val dm: DisplayMetrics = res.displayMetrics

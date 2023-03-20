@@ -5,13 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/black">
+    <!--語言-->
     <com.ci.v1_ci_view.ui.textview.CITextView
         android:id="@+id/languageTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/dimens_normal"
         android:textColor="@color/white" />
-
+    <!--底線-->
     <View
         style="@style/Line"
         android:layout_marginTop="12dp"/>

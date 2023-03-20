@@ -6,9 +6,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AbsListView
 import androidx.recyclerview.widget.RecyclerView
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
-
+/** CubeTest工具類 */
 class CubeTestUntil {
     companion object{
+        /** 取得 RecyclerView 資料下一頁 頁碼*/
         fun getRecyclerViewNextPage(recyclerView: CIRecyclerView, status: Int, apiListSize: Int, nowListSize: Int, oldPage: String): String? {
             //當停止滑動
             if(status == AbsListView.OnScrollListener.SCROLL_STATE_IDLE){

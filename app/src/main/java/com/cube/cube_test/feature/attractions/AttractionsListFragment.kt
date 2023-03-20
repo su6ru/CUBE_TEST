@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerViewAdapter
@@ -68,6 +70,7 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
     private var isRecyclerViewSlideTopLock = true
     /** 資料配接器 */
     private val mListAdapter = object : CIRecyclerViewAdapter<AttractionsListViewHolder,AttractionsDetail>(){
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttractionsListViewHolder {
             val attractionsListViewHolder = AttractionsListViewHolder(parent.context)
             //onItemListClick
@@ -209,9 +212,13 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
         }
     }
     // MARK:- ========================== AttractionsListViewHolder
-    class AttractionsListViewHolder(context:Context) : RecyclerView.ViewHolder(View.inflate(context,R.layout.item_attractions_list,null)) {
+    class AttractionsListViewHolder(val context:Context) : RecyclerView.ViewHolder(View.inflate(context,R.layout.item_attractions_list,null)) {
         init {
 
+        }
+        /** 景點圖片 */
+        private val mAttractionsImageView : ImageView by lazy {
+            itemView.findViewById(R.id.img_attractions)
         }
         /** 標題 */
         private val mTitleTextView : CITextView by lazy {
@@ -223,12 +230,24 @@ class AttractionsListFragment : CubeTestFragment(R.layout.fragment_attractions_l
         }
 
         fun loadData(attractionsDetail: AttractionsDetail){
-            mIntroductionTextView.text = attractionsDetail.mIntroduction
-            mTitleTextView.text = attractionsDetail.mName
-
+            //標題Textview設置
             mTitleTextView.text = HtmlCompat.fromHtml(attractionsDetail.mName, HtmlCompat.FROM_HTML_MODE_COMPACT)
-
+            //內容Textview設置
             mIntroductionTextView.text = HtmlCompat.fromHtml(attractionsDetail.mIntroduction, HtmlCompat.FROM_HTML_MODE_COMPACT)
+
+            val imageList = attractionsDetail.mImagesDetailList
+            //景點圖片顯示邏輯
+            if (imageList!=null && imageList.isNotEmpty()){
+                mAttractionsImageView.visibility = View.VISIBLE
+                val src = imageList[0].mSrc
+                Glide.with(context)
+                    .load(src)
+                    .into(mAttractionsImageView)
+            }else{
+                mAttractionsImageView.visibility = View.GONE
+            }
+
+
         }
 
 

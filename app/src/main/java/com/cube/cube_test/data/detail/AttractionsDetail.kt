@@ -69,7 +69,7 @@ class AttractionsDetail {
     var mUrl : String? = null
     /** 分類 */
     @SerializedName("category")
-    var mCategoryDetail : List<CategoryDetail>? = null
+    var mCategoryDetailList : List<CategoryDetail>? = null
     class CategoryDetail{
         /** 種類id */
         @SerializedName("id")
@@ -80,7 +80,7 @@ class AttractionsDetail {
     }
     /** 對象 */
     @SerializedName("target")
-    var mTargetDetail : List<TargetDetail>? = null
+    var mTargetDetailList : List<TargetDetail>? = null
     class TargetDetail{
         /** 種類id */
         @SerializedName("id")
@@ -91,7 +91,7 @@ class AttractionsDetail {
     }
     /** 設施 */
     @SerializedName("service")
-    var mServiceDetail : List<ServiceDetail>? = null
+    var mServiceDetailList : List<ServiceDetail>? = null
     class ServiceDetail{
         /** 種類id */
         @SerializedName("id")
@@ -102,7 +102,7 @@ class AttractionsDetail {
     }
     /** 友善服務 */
     @SerializedName("friendly")
-    var mFriendlyDetail : List<FriendlyDetail>? = null
+    var mFriendlyDetailList : List<FriendlyDetail>? = null
     class FriendlyDetail{
         /** 種類id */
         @SerializedName("id")
@@ -113,7 +113,7 @@ class AttractionsDetail {
     }
     /** 圖片 */
     @SerializedName("images")
-    var mImagesDetail : List<ImagesDetail>? = null
+    var mImagesDetailList : List<ImagesDetail>? = null
     class ImagesDetail{
         /** 圖片連結 */
         @SerializedName("src")
@@ -127,7 +127,7 @@ class AttractionsDetail {
     }
     /** 附件 */
     @SerializedName("files")
-    var mFilesDetail : List<FilesDetail>? = null
+    var mFilesDetailList : List<FilesDetail>? = null
     class FilesDetail{
         /** 附件連結 */
         @SerializedName("src")
@@ -141,7 +141,7 @@ class AttractionsDetail {
     }
     /** links */
     @SerializedName("links")
-    var mLinksDetail : List<LinksDetail>? = null
+    var mLinksDetailList : List<LinksDetail>? = null
     class LinksDetail{
         /** 圖片連結 */
         @SerializedName("src")

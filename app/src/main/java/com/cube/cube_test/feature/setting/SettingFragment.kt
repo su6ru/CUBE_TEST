@@ -44,7 +44,7 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
                 // onLanChangeClick()
             }
         }
-        //Method
+        //Init
         run{
             loadData(null)
         }
@@ -71,42 +71,6 @@ class SettingFragment : CubeTestFragment(R.layout.fragment_setting) {
     private var mData = Data()
 
     // MARK:- ========================== Event
-    private fun onLanChangeClick(){
-        /*
-        val languageRawStr = CIUntil.byRawResource(requireContext(),R.raw.language)
-        val languageRawList :MutableList<LanguageDetail> =
-            Gson().fromJson(languageRawStr,object :TypeToken<List<LanguageDetail>>(){}.type)
-
-        val dbLanguageDetail = CubeTestApplication.instance().mCubeTestManager.mLanguageDetail
-        val dbName = dbLanguageDetail?.mName
-
-
-        var position = 0
-        for (i in 0..languageRawList.size){
-            val languageDetail = languageRawList[i]
-            val name = languageDetail.mName
-            if (dbName.equals(name)){
-                position = i
-                break
-            }
-        }
-        position += 1
-
-        if (position >= languageRawList.size){
-            position = 0
-        }
-
-        val languageDetail = languageRawList[position]
-
-        CubeTestApplication.instance().mCubeTestManager.mLanguageDetail = languageDetail
-        //更換語言顯示
-        mLanTextView.text = languageDetail.mName
-
-        recreate(requireActivity())
-        */
-
-        Log.d("","")
-    }
 
     /** 觸發語言設定 */
     override fun onConfigurationChanged(newConfig: Configuration) {

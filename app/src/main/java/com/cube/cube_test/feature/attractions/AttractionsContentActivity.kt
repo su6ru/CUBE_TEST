@@ -13,6 +13,7 @@ import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ci.v1_ci_view.ui.`interface`.IOnOptionLister
+import com.ci.v1_ci_view.ui.banner.CIBannerView
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerView
 import com.ci.v1_ci_view.ui.recyclerview.CIRecyclerViewAdapter
 import com.ci.v1_ci_view.ui.textview.CITextView
@@ -33,6 +34,7 @@ import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
 import java.util.*
+import kotlin.collections.ArrayList
 
 /** 遊憩景點內頁 */
 class AttractionsContentActivity : CubeTestActivity<AttractionsContentActivity.Data.Request>() {
@@ -85,6 +87,10 @@ class AttractionsContentActivity : CubeTestActivity<AttractionsContentActivity.D
     /** Toolbar */
     private val mToolbar : CubeTestToolbar by lazy {
         findViewById(R.id.toolbar)
+    }
+    /** 圖片banner */
+    private val mBannerView : CIBannerView by lazy {
+        findViewById(R.id.view_banner)
     }
     /** 標題 */
     private val mTitleTextView : CITextView by lazy {
@@ -169,6 +175,28 @@ class AttractionsContentActivity : CubeTestActivity<AttractionsContentActivity.D
         }
         if (elong == null){
             mNavigationTextView.visibility = View.GONE
+        }
+
+        val imagesDetailList = attractionsDetail.mImagesDetailList
+
+        if (imagesDetailList!=null && imagesDetailList.isNotEmpty()) {
+            mBannerView.visibility = View.VISIBLE
+
+            val urlList : MutableList<String> = ArrayList()
+
+            for (imageDetail in imagesDetailList){
+
+                val src = imageDetail.mSrc
+
+                if (src != null && src.isNotEmpty()){
+                    urlList.add(src)
+                }
+            }
+
+
+                mBannerView.loadData(urlList,0)
+        }else{
+            mBannerView.visibility = View.GONE
         }
     }
 

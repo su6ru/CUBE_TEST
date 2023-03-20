@@ -111,24 +111,6 @@ class LanguageListActivity : CubeTestActivity<LanguageListActivity.Data.Request>
 
         finish()
 
-        /*
-            val locale = Locale("vi") // 新的語言設為越南語
-            Locale.setDefault(locale)
-            val configuration = Configuration()
-            configuration.setLocale(locale)
-            resources.updateConfiguration(configuration, resources.displayMetrics)
-            recreate() // 重新載入 Activity 以應用新的語言
-
-        val locale = Locale("vi")
-        val res: Resources = this.resources
-        val dm: DisplayMetrics = res.displayMetrics
-        val conf: Configuration = res.configuration.apply {
-            setLocale(locale)
-        }
-        res.updateConfiguration(conf, dm)
-        this.onConfigurationChanged(conf)
-        setResult(RESULT_OK)
-        finish()*/
     }
     // MARK:- ====================== Method
     override fun loadData(request: Data.Request?) {

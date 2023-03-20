@@ -23,6 +23,7 @@
         android:textColor="@color/white"
         android:maxLines="1"
         android:ellipsize="end"/>
+    <!--底線-->
     <View
         style="@style/Line"
         android:layout_marginTop="12dp"/>

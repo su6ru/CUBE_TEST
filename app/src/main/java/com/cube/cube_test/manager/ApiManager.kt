@@ -22,7 +22,7 @@ import retrofit2.http.Url
 import java.security.cert.X509Certificate
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
-
+/** API呼叫的管理類 */
 class ApiManager(context: Context) {
     var mContext: Context = context
     init {

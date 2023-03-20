@@ -3,7 +3,7 @@ package com.cube.cube_test.data.detail
 import com.google.gson.annotations.SerializedName
 /** 最新消息 data model */
 class NewsDetail {
-
+    /** id */
     @SerializedName("id")
     var mId : Int? = null
     /** 標題 */
@@ -29,7 +29,7 @@ class NewsDetail {
     var mUrl : String? = null
     /** 附件 */
     @SerializedName("files")
-    var mFilesDetail : List<FilesDetail>? = null
+    var mFilesDetailList : List<FilesDetail>? = null
     class FilesDetail{
         /** 附件連結 */
         @SerializedName("src")
@@ -43,7 +43,7 @@ class NewsDetail {
     }
     /** links */
     @SerializedName("links")
-    var mLinksDetail : List<LinksDetail>? = null
+    var mLinksDetailList : List<LinksDetail>? = null
     class LinksDetail{
         /** 相關連結 */
         @SerializedName("src")

@@ -3,8 +3,8 @@ package com.cube.cube_test.manager
 import android.content.Context
 import com.cube.cube_test.data.detail.LanguageDetail
 import com.google.gson.Gson
-
-open class CubeTestManager(private val context: Context) {
+/** API呼叫的管理類 */
+class CubeTestManager(private val context: Context) {
     companion object{
         const val KEY_LANGUAGE_DETAIL ="LanguageDetail"
 
