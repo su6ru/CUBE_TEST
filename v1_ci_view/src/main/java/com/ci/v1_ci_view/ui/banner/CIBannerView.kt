@@ -52,6 +52,7 @@ class CIBannerView @JvmOverloads constructor(
     }
 
     // MARK:-================= Event
+    /** 當點擊 > 或 < */
     private fun onPageChangeClick(addPosition : Int){
         val size = mImagePageAdapter.itemCount
         if (size == 0){
@@ -65,12 +66,26 @@ class CIBannerView @JvmOverloads constructor(
 
         mProgressView.text = String.format("%d/%d",newPosition+1,size)
     }
+    /** 當滑動 ViewPager2 */
+    private fun onPageSlide(position : Int){
+        if (mSelectPositionLock){
+            return
+        }
+        mSelectPosition = position
+        updateSelectPositionText()
+    }
     // MARK:-================= Method
     init {
 
         inflate(context, R.layout.view_ci_banner, this)
 
         mImagePageView.adapter = mImagePageAdapter
+
+        mImagePageView.registerOnPageChangeCallback(object :ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                onPageSlide(position)
+            }
+        })
         //onPageChangeClick
         findViewById<CIImageView>(R.id.button_last).setOnClickListener {
             onPageChangeClick(-1)
@@ -98,7 +113,7 @@ class CIBannerView @JvmOverloads constructor(
 
         mSelectPositionLock = false
     }
-
+    /** 更新數量的文字顯示 */
     fun updateSelectPositionText(){
 
         val size = mImagePageAdapter.itemCount
