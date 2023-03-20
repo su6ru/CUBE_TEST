@@ -34,11 +34,15 @@ open class CIFragment(layoutId : Int) : Fragment(layoutId) {
 
 
     fun setLoading(enable : Boolean){
-        val cIActivity = activity as CIActivity
-        cIActivity.setLoading(enable)
+        if (activity!=null) {
+            val cIActivity = activity as CIActivity
+            cIActivity.setLoading(enable)
+        }
     }
     fun showToast(text: String){
-        val cIActivity = activity as CIActivity
-        cIActivity.showToast(text)
+        if (activity!=null) {
+            val cIActivity = activity as CIActivity
+            cIActivity.showToast(text)
+        }
     }
 }
