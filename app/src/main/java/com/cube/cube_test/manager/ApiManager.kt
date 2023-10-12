@@ -61,11 +61,10 @@ class ApiManager(context: Context) {
         .build()
         .create(IApiService ::class.java)
 
-    inner class APICallBack<TResponse>(
+    inner class APICallBack<TResponse :BaseData.Response<*>> constructor(
         private val mSuccessListener : IOnOptionLister<TResponse>,
         private val mFailListener : IOnOptionLister<String>,
-        private val mCompleteListener : IOnOptionLister<Void?>,
-    ) :BaseData(),Callback<TResponse>{
+        private val mCompleteListener : IOnOptionLister<Void?>) :BaseData(),Callback<TResponse>{
         override fun onResponse(call: Call<TResponse>, response: retrofit2.Response<TResponse>) {
             val requestRaw = response.raw()
             val request = requestRaw.request()
@@ -104,6 +103,7 @@ class ApiManager(context: Context) {
                 onCallFail(mContext.getString(R.string.msg_data_anomaly))
                 return
             }
+
             onCallSuccess(response.body()!!)
 
         }

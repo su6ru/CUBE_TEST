@@ -54,7 +54,7 @@ open class CIBaseAlert @JvmOverloads constructor(
     }
     // MARK:- ========================== Event
     /** 顯示alert */
-    public fun show(parent : FrameLayout){
+    public fun show(parent : ViewGroup){
         if (mIsShow){
             return
         }

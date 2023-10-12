@@ -35,6 +35,8 @@ class MainActivity : CubeTestActivity<MainActivity.Data.Request>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         mTabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
